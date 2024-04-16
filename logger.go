@@ -240,7 +240,8 @@ func LoggerWithConfig(conf LoggerConfig) HandlerFunc {
 		c.Next()
 
 		// Log only when path is not being skipped
-		if _, ok := skip[path]; !ok {
+		fullPath := c.FullPath()
+		if _, ok := skip[fullPath]; !ok {
 			param := LogFormatterParams{
 				Request: c.Request,
 				isTerm:  isTerm,
